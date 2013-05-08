@@ -29,9 +29,8 @@ class MyUserManager(BaseUserManager):
             password=password,
             twitter_handle=twitter_handle,
         )
-        user.is_staff = True
-        user.is_active = True
         user.is_superuser = True
+        user.is_admin = True
         user.save(using=self._db)
         return user
 
@@ -41,6 +40,9 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
 
     objects = MyUserManager()
 
