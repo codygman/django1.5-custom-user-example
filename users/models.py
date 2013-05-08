@@ -29,7 +29,9 @@ class MyUserManager(BaseUserManager):
             password=password,
             twitter_handle=twitter_handle,
         )
-        user.is_admin = True
+        user.is_staff = True
+        user.is_active = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
